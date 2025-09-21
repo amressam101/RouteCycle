@@ -8,12 +8,12 @@ private:
 public:
 
     //Def Constructor
-    Admin() :Employee() {}
+    Admin();
 
 
     //Para Constructor
 
-    Admin(int id ,string name ,string password ,double salary) :Employee(id,name,password,salary){}
+    Admin(int id ,string name ,string password ,double salary);
 
 };
 

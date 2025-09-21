@@ -14,49 +14,24 @@ protected:
 public:
 
     // Constructor default
-    Person(){
-        this->id = 0;
-    }
+    Person();
 
     // Constructor pra
-    Person(int id , string name , string password){
-        this->id = id;
-        setName(name);
-        setPassword(password);
-    }
+    Person(int id , string name , string password);
 
     // Setters
 
-    void setId(int id){
-        this->id = id;
-    }
-
-    void setName(string name){
-        this->name = Validation::enterName(name);
-    }
-    void setPassword(string password){
-        this->password = Validation::enterPassword(password);
-    }
+    void setId(int id);
+    void setName(string name);
+    void setPassword(string password);
 
     // Getter
 
-    int getId(){
-        return this->id;
-    }
-
-    string getName(){
-        return this->name;
-    }
-
-    string  getPassword(){
-        return this->password;
-    }
+    int getId();
+    string getName();
+    string  getPassword();
 
     // Method 
 
-    void display(){
-        cout << "Id: " << this->id << endl;
-        cout << "Name: " << this->name << endl;
-        cout << "Password: " << this->password << endl;
-    }
+    void display();
 };

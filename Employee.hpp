@@ -1,8 +1,12 @@
 #ifndef EMPLOYEE_H
 #define EMPLOYEE_H
 #pragma once
+#include <iostream>
+#include <vector>
 #include "Person.hpp"
+#include "Client.hpp"
 
+class FileManager;
 class Employee :public Person{
 
 private:
@@ -13,37 +17,30 @@ public:
 
     //Def Constructor
 
-    Employee(){
-        this->salary = 0;
-    }
+    Employee();
 
     //Para Constructor
 
-    Employee(int id,string name,string password,double salary):Person(id,name,password){
-        setSalary(salary);
-    }
+    Employee(int id,string name,string password,double salary);
 
 
     //Setters
 
-    void setSalary(double salary){
-        this->salary = Validation::enterSalary(salary);
-    }
+    void setSalary(double salary);
 
     //Getter
 
-    double getSalary(){
-        return salary;
-    }
+    double getSalary();
 
 
     //INFO
 
-    void display(){
-        Person::display();
-        cout<<"Salary: "<< this->salary <<endl;
-        cout << "===========================\n";
-    }
+    void display();
+
+    void addClient(Client& client);
+    Client* searchClient(int id);
+    void listClient();
+    void editClient(int id, string name, string password, double balance);
 
 
 };

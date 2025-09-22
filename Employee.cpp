@@ -21,7 +21,7 @@ void Employee::setSalary(double salary){
 
 
 // Getters
-double Employee::getSalary(){
+double Employee::getSalary()const{
     return salary;
 }
 

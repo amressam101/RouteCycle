@@ -1,11 +1,19 @@
 #include "FileManager.hpp"
 #include "Parser.hpp"
 #include <fstream>
+#include <sstream>
 using namespace std;
 
  // ALL ADD Class:
 
 void FileManager::addClient(Client& c) {
+    vector<Client> existingClients = getAllClients();
+    for (auto& client :existingClients) {
+        if (client.getId() == c.getId()) {
+            cout << "Client with ID " << c.getId() << " already exists!\n";
+            return;
+        }
+    }
     string fileClient = "Clients.txt";
     ofstream file;
     file.open(fileClient,ios::app);

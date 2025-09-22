@@ -2,7 +2,7 @@
 #define CLIENT_H
 #pragma once
 #include "Person.hpp"
-
+using namespace std;
 class Client : public Person{
 private:
     double balance;
@@ -20,7 +20,7 @@ public:
     // Method 
     void setBalance(double balance);
 
-    double getBalance();
+    double getBalance() const;
 
     void deposit(double amount);
 

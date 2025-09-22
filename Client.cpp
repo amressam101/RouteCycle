@@ -8,11 +8,13 @@ Client::Client(){
     this->balance = 0;
 }
     
-// Constructor pra
+// Constructor para
 
 Client::Client(int id , string name , string password , double balance) : Person(id,name,password){
     setBalance(balance);
 }
+
+
 
 // Method
 
@@ -20,7 +22,9 @@ void Client::setBalance(double balance) {
     this->balance = Validation::enterBalance(balance);
 }
 
-double Client::getBalance() {
+
+
+double Client::getBalance() const{
     return this->balance;
 }
 

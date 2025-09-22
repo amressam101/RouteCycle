@@ -1,6 +1,0 @@
-1,AmrEssam,amressam,2000
-2,uahsd,123456789,2500
-3,saraAli,saraali123,4000
-1,AmrEssam,amressam,2000
-2,uahsd,123456789,2500
-3,saraAli,saraali123,4000

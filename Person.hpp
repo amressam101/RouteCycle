@@ -27,9 +27,9 @@ public:
 
     // Getter
 
-    int getId();
-    string getName();
-    string  getPassword();
+    int getId() const;
+    string getName() const;
+    string  getPassword() const;
 
     // Method 
 

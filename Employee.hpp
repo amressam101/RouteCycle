@@ -30,7 +30,7 @@ public:
 
     //Getter
 
-    double getSalary();
+    double getSalary() const;
 
 
     //INFO

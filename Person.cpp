@@ -27,15 +27,15 @@ void Person::setPassword(string password){
 
 // Getter
 
-int Person::getId(){
+int Person::getId() const{
     return this->id;
 }
 
-string Person::getName(){
+string Person::getName()const{
     return this->name;
 }
 
-string  Person::getPassword(){
+string  Person::getPassword()const{
     return this->password;
 }
 

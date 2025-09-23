@@ -1,7 +1,9 @@
+
+
+
 #include "Client.hpp"
-#include "Validation.hpp"
-#include <iostream>
-using namespace std;
+
+
 
 
 Client::Client(){

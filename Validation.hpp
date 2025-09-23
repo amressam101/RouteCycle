@@ -1,6 +1,9 @@
 #pragma once
 #include <iostream>
+#include <vector>
+
 using namespace std;
+
 
 class Validation{
 private:
@@ -37,6 +40,7 @@ private:
         if (salary < 5000 ) return false;
         else return true;
     }
+
 
 public:
 
@@ -88,4 +92,5 @@ public:
         }
         return salary;
     }
+
 };

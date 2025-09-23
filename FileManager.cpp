@@ -1,7 +1,12 @@
 #include "FileManager.hpp"
 #include "Parser.hpp"
+#include "Client.hpp"
+#include "Employee.hpp"
+#include "Admin.hpp"
 #include <fstream>
 #include <sstream>
+
+
 using namespace std;
 
  // ALL ADD Class:
@@ -28,6 +33,13 @@ void FileManager::addClient(Client& c) {
 void FileManager::addEmployee(Employee& e){
     string fileEmployee = "Employees.txt";
     ofstream file;
+    vector<Employee> existingEmployees = getAllEmployees();
+    for (auto& employee :existingEmployees) {
+        if (employee.getId() == e.getId()) {
+            cout << "Employee with ID " << e.getId() << " already exists!\n";
+            return;
+        }
+    }
     file.open(fileEmployee,ios::app);
     if (file.is_open()){
         file << e.getId() << "," << e.getName() << "," << e.getPassword() << "," << e.getSalary() << endl;
@@ -40,6 +52,13 @@ void FileManager::addEmployee(Employee& e){
 void FileManager::addAdmin(Admin& a){
     string fileAdmin = "Admins.txt";
     ofstream file;
+    vector<Admin> existingAdmins = getAllAdmins();
+    for (auto& admin : existingAdmins) {
+        if (admin.getId() == a.getId()) {
+            cout << "Admin with ID " << a.getId() << " already exists!\n";
+            return;
+        }
+    }
     file.open(fileAdmin,ios::app);
     if (file.is_open()){
         file << a.getId() << "," << a.getName() << "," << a.getPassword() << "," << a.getSalary() << endl;

@@ -1,15 +1,14 @@
 #pragma once
-#include <iostream>
 #include <vector>
-#include "Client.hpp"
-#include "Employee.hpp"
-#include "Admin.hpp"
-using namespace std;
 
+using namespace std;
+class Client;
+class Employee;
+class Admin;
 class DataSourceInterface{
 public:
 
-    // Method Add Objcat From Class
+    // Method Add Object From Class
     virtual void addClient(Client& c) = 0;
     virtual void addEmployee(Employee& e) = 0;
     virtual void addAdmin(Admin& a) = 0;
@@ -26,3 +25,4 @@ public:
     virtual void removeAllAdmins() = 0;
 
 };
+

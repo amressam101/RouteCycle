@@ -2,37 +2,25 @@
 #include <iostream>
 #include <fstream>
 #include <vector>
-#include "Parser.hpp"
 #include "DataSourceInterface.hpp"
-#include "Person.hpp"
-using namespace std;
 
-class FileManager : public DataSourceInterface{
+// Forward declarations
+class Client;
+class Employee;
+class Admin;
+class Parser;
 
+class FileManager : public DataSourceInterface {
 public:
-    // ALL ADD Class:
-
     void addClient(Client& c);
-    
     void addEmployee(Employee& e);
-
     void addAdmin(Admin& a);
 
-    // All Get  Class:
-    
-    vector<Client> getAllClients();
-
-    vector<Employee> getAllEmployees();
-    
-    vector<Admin> getAllAdmins();
-
-
-    // All Remove Class:
+    std::vector<Client> getAllClients();
+    std::vector<Employee> getAllEmployees();
+    std::vector<Admin> getAllAdmins();
 
     void removeAllClients();
-
     void removeAllEmployees();
-
     void removeAllAdmins();
-
 };

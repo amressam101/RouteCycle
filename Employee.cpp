@@ -1,7 +1,8 @@
 #include "Employee.hpp"
-#include "Validation.hpp"
+#include "Client.hpp"
 #include "FileManager.hpp"
 #include <iostream>
+
 using namespace std;
 
 // Def Constructor
@@ -14,11 +15,10 @@ Employee::Employee(int id , string name, string password, double salary) : Perso
     setSalary(salary);
 }
 
-// Setters 
+// Setters
 void Employee::setSalary(double salary){
     this->salary = Validation::enterSalary(salary);
 }
-
 
 // Getters
 double Employee::getSalary()const{
@@ -32,23 +32,28 @@ void Employee::display(){
     cout << "===========================\n";
 }
 
-// Employee Add a Client 
+// Employee Add a Client
 void Employee::addClient(Client& client){
     FileManager fm;
     fm.addClient(client);
 }
 
-// Employee Search a Client 
+// Employee Search a Client
 Client* Employee::searchClient(int id){
     FileManager fm;
-    vector<Client> client = fm.getAllClients();
-    for(auto& c : client){
-        c.display();
+    vector<Client> clients = fm.getAllClients();
+    for(auto& c : clients){
+        if(c.getId() == id) {
+            cout << "====Client Found====\n"<<"ID : "<< c.getId()<<endl<<"Name : "<< c.getName()<<endl<<"====================" <<endl ;
+            Client* foundClient = new Client(c.getId(), c.getName(), c.getPassword(), c.getBalance());
+            return foundClient;
+        }
     }
-    return NULL;
+    cout << "Client Not Found" << endl;
+    return nullptr;  // Add this return statement
 }
 
-// Employee List All a Clients 
+// Employee List All a Clients
 void Employee::listClient(){
     FileManager fm;
     vector<Client> client = fm.getAllClients();

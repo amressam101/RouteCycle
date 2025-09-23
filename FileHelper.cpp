@@ -1,8 +1,12 @@
 #include "FileHelper.hpp"
+#include "Client.hpp"
+#include "Employee.hpp"
+#include "Admin.hpp"
 #include <iostream>
 #include <fstream>
 #include <vector>
 #include <string>
+
 using namespace std;
 
 void FileHelper::saveLast(const string& fileName, int id) {

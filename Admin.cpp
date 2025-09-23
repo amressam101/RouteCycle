@@ -1,7 +1,11 @@
+
 #include "Admin.hpp"
 #include "FileManager.hpp"
-#include "Parser.hpp"
+#include "FileHelper.hpp"
 #include <iostream>
+#include <fstream>
+#include <optional>
+
 
 using namespace std;
 
@@ -15,13 +19,21 @@ void Admin::saveAdmin(){
 
         if (file.is_open()) {
 
-            file << getId() << " " << getName() << " " << getPassword() << " " << getSalary() << endl;
+            file << getId() << "," << getName() << "," << getPassword() << "," << getSalary() << endl;
             file.close();
 
         }
     }
 
     void Admin::addClient(Client& c) {
+    FileManager f;
+    vector<Client> existingClients = f.getAllClients();
+    for (auto& client :existingClients) {
+        if (client.getId() == c.getId()) {
+            cout << "Client with ID " << c.getId() << " already exists!\n";
+            return;
+        }
+    }
         ofstream file("Clients.txt", ios::app);
         if (file.is_open()) {
             file << c.getId() << ","
@@ -36,6 +48,7 @@ void Admin::saveAdmin(){
         ifstream file("Clients.txt");
         string line;
         while (getline(file, line)) {
+            if (line.empty()) continue;
             size_t pos1 = line.find(',');
             size_t pos2 = line.find(',', pos1 + 1);
             size_t pos3 = line.find(',', pos2 + 1);
@@ -45,13 +58,15 @@ void Admin::saveAdmin(){
             string p = line.substr(pos2 + 1, pos3 - pos2 - 1);
             double b = stod(line.substr(pos3 + 1));
             if (id == clientId) {
-                cout << "Client Found: " << id << n << endl;
+                cout << "====Client Found====\n" <<"ID : "<< id <<endl<< "Name:  "<< n << endl <<"===================="<<endl;
                 Client* c = new Client(id, n, p, b);
+                file.close();
                 return c;
            }
         }
+    file.close();
         cout << "Client Not Found" << endl;
-        return 0;
+         return nullptr;
     }
 
     void Admin::listClient() {
@@ -63,11 +78,20 @@ void Admin::saveAdmin(){
     }
 
     void Admin::addEmployee(Employee& e) {
+    FileManager f;
+    vector<Employee> existingEmployees = f.getAllEmployees();
+    for (auto& employee :existingEmployees) {
+        if (employee.getId() == e.getId()) {
+            cout << "Employee with ID " << e.getId() << " already exists!\n";
+
+            return;
+        }
+    }
         ofstream file("Employees.txt", ios::app);
         if (file.is_open()) {
-            file << e.getId() << " "
-                 << e.getName() << " "
-                 << e.getPassword() << " "
+            file << e.getId() << ","
+                 << e.getName() << ","
+                 << e.getPassword() << ","
                  << e.getSalary() << endl;
             file.close();
         }
@@ -77,18 +101,30 @@ void Admin::saveAdmin(){
         ifstream file("Employees.txt");
         string line;
         while (getline(file, line)) {
-            int id; string n, p; double s;
-            istringstream iss(line);
-            iss >> id >> n >> p >> s;
+            if (line.empty()) continue;
+            size_t pos1 = line.find(',');
+            size_t pos2 = line.find(',', pos1 + 1);
+            size_t pos3 = line.find(',', pos2 + 1);
+
+            if (pos1 == string::npos || pos2 == string::npos || pos3 == string::npos) continue;
+
+            int id = stoi(line.substr(0, pos1));
+            string n = line.substr(pos1 + 1, pos2 - pos1 - 1);
+            string p = line.substr(pos2 + 1, pos3 - pos2 - 1);
+            double s = stod(line.substr(pos3 + 1));
+
             if (id == empId) {
-                cout << "Employee Found: " <<id<< n << endl;
-                Employee* e = new Employee();
+                cout << "===Employee Found===\n" <<"ID : "<< id <<endl<< "Name:  "<< n << endl <<"===================="<<endl;
+
+                Employee* e = new Employee(id , n ,p , s);
+                 file.close();
                 return e;
             }
         }
-        cout << "Employee Not Found" << endl;
-        return 0;
-    }
+    file.close();
+    cout << "Employee Not Found" << endl;
+    return nullptr;
+}
 
     void Admin::listEmployee() {
         ifstream file("Employees.txt");

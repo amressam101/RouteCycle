@@ -1,25 +1,20 @@
-#ifndef FILEHELPER_HPP
-#define FILEHELPER_HPP
-
+#pragma once
 #include <string>
 #include <vector>
-#include "Client.hpp"
-#include "Employee.hpp"
-#include "Admin.hpp"
 
-using namespace std;
+class Client;
+class Employee;
+class Admin;
 
 class FileHelper {
 public:
-    static void saveLast(const string& fileName, int id);
-    static int getLast(const string& fileName);
+    static void saveLast(const std::string& fileName, int id);
+    static int getLast(const std::string& fileName);
     static void saveClient(const Client& c);
-    static void saveEmployee(const string& fileName, const string& lastIdFile, const Employee& e);
-    static void saveAdmin(const string& fileName, const string& lastIdFile, const Admin& a);
-    static vector<Client> getClients();
-    static vector<Employee> getEmployees();
-    static vector<Admin> getAdmins();
-    static void clearFile(const string& fileName, const string& lastIdFile);
+    static void saveEmployee(const std::string& fileName, const std::string& lastIdFile, const Employee& e);
+    static void saveAdmin(const std::string& fileName, const std::string& lastIdFile, const Admin& a);
+    static std::vector<Client> getClients();
+    static std::vector<Employee> getEmployees();
+    static std::vector<Admin> getAdmins();
+    static void clearFile(const std::string& fileName, const std::string& lastIdFile);
 };
-
-#endif

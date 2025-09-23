@@ -1,6 +1,8 @@
-#ifndef ADMIN_H
-#define ADMIN_H
+#pragma once
+
 #include "Employee.hpp"
+#include "Client.hpp"
+
 
 class Admin : public Employee{
 private:
@@ -26,4 +28,3 @@ public:
 
 
 
-#endif //ADMIN_H
